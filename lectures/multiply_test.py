@@ -5,4 +5,4 @@ def test_multiply():
     assert multiply(4, 6) == 24
 
 def test_multiply2():
-    assert multiply(5, 6) == 2
+    assert multiply(5, 6) == 30
