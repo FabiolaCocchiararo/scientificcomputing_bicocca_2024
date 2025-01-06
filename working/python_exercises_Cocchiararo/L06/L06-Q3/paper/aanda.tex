@@ -1,0 +1,554 @@
+%                                                                 aa.dem
+% AA vers. 9.1, LaTeX class for Astronomy & Astrophysics
+% demonstration file
+%                                                       (c) EDP Sciences
+%-----------------------------------------------------------------------
+%
+%\documentclass[referee]{aa} % for a referee version
+%\documentclass[onecolumn]{aa} % for a paper on 1 column  
+%\documentclass[longauth]{aa} % for the long lists of affiliations 
+%\documentclass[letter]{aa} % for the letters 
+%\documentclass[bibyear]{aa} % if the references are not structured 
+%                              according to the author-year natbib style
+
+%
+\documentclass{aa}  
+
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[normalem]{ulem}
+\usepackage{txfonts}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{adjustbox}
+\usepackage{hyperref}
+\usepackage[switch]{lineno}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=blue,      
+    urlcolor=blue,
+    citecolor=blue,
+    }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\fc}[1]{\textcolor{red}{\bf [FC: #1]}}
+\newcommand{\af}[1]{\textcolor{green}{\bf [AF: #1]}}
+\newcommand{\as}[1]{\textcolor{magenta}{\bf [AS: #1]}}
+\newcommand{\al}[1]{\textcolor{cyan}{\bf [AL: #1]}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\usepackage[options]{hyperref}
+% To add links in your PDF file, use the package "hyperref"
+% with options according to your LaTeX or PDFLaTeX drivers.
+%
+\begin{document} 
+
+
+   \title{Electromagnetic signatures from accreting massive black hole binaries in time domain photometric surveys}
+
+   %\subtitle{I. Overviewing the $\kappa$-mechanism}
+
+   \author{F. Cocchiararo
+          \inst{1,2}\fnmsep\thanks{E-mail: f.cocchiararo@campus.unimib.it} 
+          A. Franchini\inst{1,2,3}\fnmsep\thanks{E-mail: alessia.franchini@unimib.it}
+          A. Lupi \inst{1,2,4}
+          A. Sesana \inst{1,2}
+          }
+
+   \institute{
+    Dipartimento di Fisica "G. Occhialini", Università degli Studi di Milano-Bicocca, Piazza della Scienza 3, 20126 Milano, Italy             
+    \and
+    INFN, Sezione di Milano-Bicocca, Piazza della Scienza 3, 20126 Milano, Italy
+    \and
+    Universität Zürich, Institut für Astrophysik, Winterthurerstrasse 190, CH-8057 Zürich, Switzerland
+    \and
+    DiSAT, Università degli Studi dell’Insubria, via Valleggio 11, I-22100 Como, Italy\\
+       }
+
+   \date{}
+
+% \abstract{}{}{}{}{} 
+% 5 {} token are mandatory
+\abstract
+% context heading (optional)
+% {} leave it empty if necessary  
+{We study spectral and time variability of accreting massive black hole binaries (MBHBs) at milli-parsec separations surrounded by a geometrically thin circumbinary disc. To this end, we present the first computation of the expected spectral energy distribution (SED) and light curves (LCs) from 3D hyper-Lagrangian resolution hydrodynamic simulations of these systems. We modelled binaries with a total mass of $10^6$ M$_\odot$, eccentricities of $e=0,\, 0.9$, and a mass ratio of $q=0.1,\, 1$. The circumbinary disc has an initial aspect ratio of 0.1, features an adiabatic equation of state, and evolves under the effect of viscous heating, black-body cooling, and self gravity. To construct the SED, we considered black-body emission from each element of the disc and we added a posteriori an X-ray corona with a luminosity proportional to that of the mini-discs that form around each individual black hole. We find significant variability of the SED, especially at high energies, which translates into LCs displaying distinctive modulations of a factor of $\approx 2$ in the optical and of $\approx 10$ in UV and X-rays.
+We analysed in detail the flux variability in the optical band that will be probed by the Vera Rubin Observatory (VRO). We find clear modulations on the orbital period and half of the orbital period in all systems.
+Only in equal-mass binaries, we find an additional, longer-timescale modulation, associated with an over-density forming at the inner edge of the circumbinary disc (commonly referred to as a lump).
+When considering the VRO flux limit and nominal survey duration, we find that equal-mass, circular binaries are unlikely to be identified, due to the lack of prominent peaks in their Fourier spectra. Conversely, unequal-mass and/or eccentric binaries can be singled out up to $z\approx 0.5$ (for systems with $L_{\rm bol}\approx 10^{42}$ erg s$^{-1}$) and $z\approx 2$ (for systems with $L_{\rm bol}\approx 10^{44}$ erg s$^{-1}$). Identifying electromagnetic signatures of MBHBs at separations of $\sim 10^{-4}-10^{-2}$ pc is of paramount importance to understand the physics of the gravitational wave (GW) sources of the future Laser Interferometer Space Antenna, and to pin down the origin of the GW background (GWB) observed in pulsar timing arrays.}
+
+   \keywords{Accretion, accretion discs --
+                Hydrodynamics --
+                quasars: supermassive black holes 
+               }
+   
+\titlerunning{EM signatures from accreting MBHBs in time domain photometric surveys}
+   \authorrunning{F. Cocchiararo et. al}
+   \maketitle
+%
+%-------------------------------------------------------------------
+%%%%%%%%%%%%%%%%% BODY OF PAPER %%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%% INTRODUCTION %%%%%%%%%%%%%%%%%%
+\section{Introduction}
+
+The existence of a massive black hole (MBH) at the centre of most, if not all, galaxies is a well-established observational fact \citep[][and references therein]{Kormendy2013}. In the hierarchical clustering framework of structure formation, galaxies grow by accreting material from the intergalactic medium and by merging with other galaxies. Galaxy mergers are expected to result in the formation of MBH binaries (MBHBs). Indeed, during these merging events, the MBHs hosted at the centre of the parent galaxies migrate towards the centre of the merger remnant due to the dynamical friction mechanism \citep{Chandrasekhar1943}.
+At parsec separation, where the two MBHs bind together to form a binary \citep{Begelman1980}, dynamical friction becomes inefficient in bringing the binary components closer together \citep{Mayer2007b,Dotti2012}. 
+Since gravitational waves (GWs) are efficient only at binary separations below $\sim 10^{-3} \rm \, pc$ , it is necessary to invoke one or more astrophysical mechanisms to shrink the binary further down, to the point where GWs can efficiently drive the merger. 
+The most explored mechanisms involve the interaction of the binary with either its stellar \citep{Quinlan1996,Khan2011,2011ApJ...732L..26P} or gaseous \citep{ArmitageNatarajan2002,Escala2005,Lodato2009,Cuadra2009} environment. While the evolution driven by stars is always found to shrink the binary due to the energy and angular momentum exchange with stars in three-body stellar encounters \citep[e.g.][]{Sesana2007,Bortolas2021}, the effect of the interaction with the gaseous environment has recently been widely debated.
+The effect of the circumbinary disc has been investigated extensively using 2D \citep{Munoz2019,Duffell2019,Tiede2020, Siwek2023} and 3D \citep{HeathNixon2020,Franchini2021,Franchini2022,Franchini2023} hydrodynamical simulations. The general consensus is that, although relatively warm discs with an aspect ratio of around 0.1 have been found to expand the binary, shrinking is usually promoted by cold, less viscous circumbinary discs.
+
+As a result of the interaction with the gaseous environment in which they reside, MBHBs are expected to produce distinctive observational electromagnetic (EM) signatures.
+Currently known candidates at sub-parsec separations have been inferred from their EM emission \citep{Bogdanovic2022} through either photometric measurements of quasi-periodic variability both in the optical \citep{Graham2015,Charisi2016, Liu2019, 2020MNRAS.499.2245C} and $\gamma$ rays \citep[e.g.][]{2018A&A...615A.118S,2022arXiv221101894P} or spectroscopic measurements of offset broad emission lines \citep{Bogdanovic2009, Dotti2009,
+BorosonLauer2009, TangGrindlay2009, Decarli2010, Barrows2011, Tsalmantza2011, Eracleous2012,Tsai2013}.
+Convincing evidence that these sources are indeed MBHBs is still missing, both due to the lack of a firm theoretical understanding of the expected distinctive emission signatures of these systems and because the observed features can be accommodated by alternative explanations \citep[see e.g.][]{1994ApJS...90....1E,2016MNRAS.461.3145V}.
+
+These observationally elusive MBHBs are also the main targets of current and future GW experiments. The future space-based Laser Interferometer Space Antenna  \citep[LISA,][]{LISA2023}, to be launched in 2035, will survey the milli-hertz GW window, where it is expected to observe the late inspiral and mergers of MBHBs with masses in the range of $10^4-10^7$M$_\odot$ everywhere in the Universe. At even lower frequencies, in the nano-hertz regime, precision timing of an ensemble of millisecond pulsars within a so-called pulsar timing array \citep[PTA,][]{Foster1990} is sensitive to GWs emitted by MBHBs of billions of solar masses at milli-parsec separations \citep[see e.g.][]{Sesana2008}. Although GWs might be eventually needed for a firm detection of MBHBs, the identification of convincing EM counterparts will help with pinning down the properties of the emitting systems, and thus realising the promises of low-frequency multi-messenger astronomy. The importance of understanding the EM emission of MBHBs has became even more compelling following the recent detection of a signal compatible with a GW background (GWB) reported by the European and Indian PTA \citep[EPTA+InPTA,][]{2023arXiv230616214A,2023arXiv230616224A,2023arXiv230616225A,2023arXiv230616226A,2023arXiv230616227A,Smarra2023}, NANOGrav  \citep{nanograv2023,2023ApJ...951L...8A,2023ApJ...951L...9A,2023ApJ...951L..10A,2023ApJ...951L..11A}, Parkes PTA \citep[PPTA,][]{ppta2023}, and Chinese PTA \citep[CPTA][]{cpta2023}. Although the properties of the signal are compatible with a cosmic population of MBHBs, its origin cannot yet be observationally established from the GW data alone, and the identification of EM counterparts might aid in confirming the origin of this signal.
+
+Attempts to characterise the EM signatures from MBHBs at very small separations (i.e. tens to a hundred gravitational radii) have been made by several authors \cite[e.g.][]{Tanaka2012, Tang2018, Ascoli2018,gutierrez2022, 2022ApJ...928..187C,MajorKrauth2023, franchini2024}. The same regime of separations has recently been investigated in a series of 2D numerical simulations, indicating that the lump periodicity coming from the streams and the cavity wall is more noticeable in circular binaries being a possible smoking gun signature of circularity \citep{Westernacher2022}. Moreover, \cite{Westernacher2023} proposes that EM signatures produced by MBHBs could be different from single MBH quasi-periodic sources as a consequence of the formation of eccentric mini-discs, prompted by periodic mass exchange between mini-discs.
+The characterisation of the EM signatures at intermediate scales — that is, separations $\sim 10^{-4}-10^{-2}$ pc from full 3D hydrodynamical simulations that resolve the thermal evolution of the circumbinary disc — is currently missing and is of fundamental importance for aiding the identification of the origin of the GWB signal found with PTA experiments. Furthermore, the modelling of these signatures is of paramount importance for the identification of MBHB candidates in time-domain surveys, which can constitute the cosmic population of precursors of the merging binaries that will be detected by LISA.
+
+In this work, we have computed for the first time the spectral energy distributions (SEDs) and the multi-wavelength light curves (LCs) from 3D numerical simulations with hyper-Lagrangian refinement of milli-parsec scale binaries. We have taken into account the thermodynamic evolution of the gas using a  radiative cooling prescription in the form of black-body radiation. We have also included the disc's self-gravity, which is usually neglected, and the Shakura-Sunyaev prescription for viscosity \citep{ShakuraSunyaev1973}. 
+We modelled binaries with an eccentricity of $e=0,\,0.9$ and mass ratio of $q = 0.1,\,1$ and then computed their emitted spectra and LCs. 
+We also added to the spectrum the contribution from a non-thermal corona, based on the assumption that its emission is proportional to the radiation emitted by the discs around each binary component (also called mini-discs). We placed the simulated binary at different redshifts of $z=\,0.1,\,0.4,\,0.7$, and analysed the observed flux in different frequency bands, mainly focussing on the optical band that will be probed by the upcoming Vera Rubin Observatory  \citep[VRO;][]{LSST2009}. As an exercise, we then assumed the source to be two orders of magnitude brighter, but still preserving the same LC, and we investigated the observability with the VRO at higher redshifts of $z=\,1,\,2,\,3$. 
+Finally, we analysed the time evolution of the disc and binary properties such as the aspect ratio, $H/R$ (where $H$ is the disc vertical height and $R$ is the distance from the central MBH in the disc plane), the semi-major axis, $a_0$, and the eccentricity, $e$, of the binaries.
+
+The paper is organised as follows. In Sect. \ref{NumericalPhysicalSetup}, we describe the numerical details of the simulations and the physical parameters we use, the circumbinary disc physics assumptions, and the thermal emission calculation. We show and discuss the main results we obtained, including the time evolution of the main binary and disc properties in Sect. \ref{Results}. Finally, we draw our conclusions and discuss possible observational implications in Sect. \ref{sec:conclusions}.
+
+%--------------------------------------------------------------------
+%%%%%%%%%%%%%%%%% PHYSICAL SETUP %%%%%%%%%%%%%%%%%%
+\section{Physical and numerical set-up}
+\label{NumericalPhysicalSetup}
+
+\subsection{Binary and circumbinary disc model}
+\label{discmodel}
+
+We performed 3D hyper-Lagrangian resolution hydrodynamics simulations of the evolution of the thermal circumbinary disc around an accreting MBHB. We used the 3D meshless finite mass (MFM) version of the code \textsc{GIZMO} \citep{Hopkins2015} combined with the adaptive particle splitting technique \citep[see][for details]{Franchini2022} to increase the resolution inside the cavity carved by the binary. 
+We ran four simulations combining two values of the binary mass ratio, $q = 0.1,\,1$, and eccentricity, $e=0,\,0.9$, each spanning over 1300 binary orbital periods.
+The only exception is the circular binary with a mass ratio of $q=0.1$, which we evolved for just over 1060 orbital periods since the disc reached a steady state after fewer orbits in this case.
+The MBHBs have, in code units, a total mass of $M_{\rm B} = M_{\rm 1} + M_{\rm 2} = 1$, where $M_{1}$ and $M_{2}$ are the masses of the primary and secondary black hole, respectively, and the initial semi-major axis, $a_{\rm 0}=1$. Each MBH is modelled as a sink particle with an accretion radius of $R_{\rm sink} = 0.05a$. As the binary orbit is allowed to evolve with time \citep{Franchini2023}, conservation of mass, linear and angular momentum are ensured during each accretion event, in the same way as is done in the {\sc phantom} code \citep{bate1995}.
+We initially modelled the circumbinary disc with $N=10^6$ gas particles for a total mass of $M_{\rm D} = 0.01 M_{B}$. The mass is distributed with an initial surface density profile of $\Sigma \propto R^{-1}$ and a radial extent between $R_{\rm in}=2a$ and $R_{\rm out}=10a$. The disc is co-planar with the binary orbit and has an initial aspect ratio of $H/R = 0.1$ in all our simulations. We generated the disc initial conditions using the SPH code {\sc phantom} \citep{Price2017}.
+
+In our model, the thermodynamic evolution of the gas follows an adiabatic equation of state with index $\gamma = 5/3$, so that the disc is allowed to heat and cool and we can capture the effect of shocks. 
+In the Shakura-Sunyaev accretion disc model, the angular momentum transport within the disc is modelled with the $\alpha$ viscosity parameter, which constitutes a simple parameterisation of the turbulence within the disc. This turbulence might be driven by the magneto-rotational instability in highly ionised discs \citep{balbushawley1991}. We therefore included viscosity using the Shakura-Sunyaev parameterisation with a kinematic viscosity of $\nu = \alpha c_{\rm s } H$, where $c_{\rm s}$ is the gas sound speed, and set $\alpha=0.1$ in all our simulations.
+Since we do also include the disc self-gravity together with a cooling prescription, our discs may develop gravitational instabilities that will eventually result in an additional source of angular momentum transport \citep{lodatorice2004,Lodatorice2005,lodato2007sg}.
+To ensure the gravitational stability of the disc, we set the initial Toomre parameter, $Q > 1$ \citep{Toomre1964}. 
+
+The vast majority of existing numerical simulations that consider the disc self-gravity \citep{Gammie2001, Lodatorice2005,Cuadra2009,roedig2014,Franchini2021} make use of a simple cooling prescription that assumes gas to cool on a timescale, $t_{\rm cool}$, that is a multiple, $\beta_{\rm cool}$, of the dynamical time, $t_{\rm dyn}=\Omega^{-1}$; that is, $\beta_{\rm cool} = \Omega t_{\rm cool}$. 
+In this work, we have used a more realistic radiative cooling in the form of black-body radiation. The cooling rate is given by
+\begin{equation}
+        \label{eqn:cooling}
+        \dot Q = \frac{8}{3} \frac{\sigma_{\rm SB} T_{\rm i}^4}{\kappa \Sigma}
+,\end{equation}
+where $\sigma_{\rm SB}$ is the Stephan-Boltzmann constant, $\kappa$ is the opacity, $\Sigma$ is the disc surface density, and $ T_{\rm i} $ is the temperature of each element.
+We assume the opacity, $\kappa$, to be a combination of the Kramer opacity, $ \kappa_{\rm Kramer} \propto \rho T_{\rm i} ^{-7/2} $, and the electron-scattering opacity, $ \kappa_{\rm es} = 0.2 (1+X) \, \mbox{g}\, \mbox{cm}^2$, with a hydrogen mass fraction of $ X=0.59$.
+When scaled to physical units, all our simulations have a binary total mass of $M_{\rm B}= 10^6 M_{\odot}$ and initial separation of
+$a=4.8 \cdot 10^{-4} \, \rm{pc} \simeq 1.2 \cdot 10^4 \, R_{\rm g}$, where $R_{\rm g} = GM_{\rm B}/c^2$ is the gravitational radius of the binary. This implies that we can follow the gas only down to $R_{\rm sink}=0.05a \sim 600 R_{\rm g} \sim 100 R_{\rm ISCO}$. Therefore, we should bear in mind that in the following we are neglecting the emission in the region between $100 R_{\rm ISCO}$ and $R_{\rm ISCO}$ and the total luminosity of the system is likely going to be underestimated, especially in the UV and X-ray bands.
+Choosing this particular semi-major axis value sets the orbital period of the binaries to 1 year. According to the observing time of a VRO survey of 10 years, our choice of semi-major axis implies that we can observe the flux emitted by the source over 10 orbital periods. 
+In order to investigate the thermodynamics that governs our circumbinary discs, we measured the rate of change in the internal energy due to both heating (i.e. shocks, PdV work, and viscosity) and cooling processes, and we then compared it to the cooling rate in Eq. \ref{eqn:cooling}.
+We defined an effective $\beta_{\rm eff}$ as
+\begin{equation}
+  \label{eqn:betaeff}
+  \beta_{\rm eff} = \frac{u}{\dot u} \Omega
+,\end{equation}
+where $u$ is the particle internal energy. 
+We find $\beta_{\rm eff}$ to depend on the radius and to reach a stable constant value of $\beta_{\rm eff} \sim 5$ at $r=2a$ and $\beta_{\rm eff} \sim 1.7 \times 10^{3}$ at $r=10a$ after an initial transient phase of about $\sim 800 \, P_{\rm B}$ in all our simulations. We compared $\beta_{\rm eff}$ with the $\beta_{\rm cool}$ we measured from the black-body cooling and we found that $\beta_{\rm cool} \ll \beta_{\rm eff}$. We can therefore conclude that the heating mechanisms ensure the disc stability against the black-body cooling, which initially causes the transient phase.
+
+
+%%%%%%%%%%%%%%%%%% EMISSION MODEL %%%%%%%%%%%
+
+\subsection{Emission model}
+\label{Emission model}
+
+For each gas particle, $i$, we calculated the temperature, $T_{\rm i }$, assuming that both gas and radiation pressure contribute to the hydrostatic equilibrium of the disc, and thus numerically solving the following implicit  equation for $T_i$ at each resolution element:
+\begin{equation}
+    \label{eqn:Ptot}
+    P_{\rm tot} = P_{\rm gas} + P_{\rm rad} = \frac{\rho k_{\rm B} T_{\rm i}}{m_{\rm p}\mu} + \frac{4}{3}\frac{\sigma_{\rm SB} T_{\rm i}^4}{c}.
+\end{equation}
+
+We divided the disc temperature domain into a 2D matrix with dimensions of $512 \times 512$ pixels in the $x$-$y$ plane, which coincides with the MBHB orbital plane. For each pixel, we computed the midplane temperature as the average temperature of all the particles within the $z$ co-ordinate $-0.05 a < z < 0.05 a $, obtaining the midplane temperature matrix, $T$. For a more detailed analysis of the mini-discs, we further divided the spatial domain from the sink radius of each MBH out to $r = 3 a$ into a 2D matrix of $512 \times 512$ pixels. For each pixel in this grid, we computed the midplane temperature, $T$, using the same method outlined above. 
+We then computed the effective temperature in optically thick approximation ($\kappa\Sigma > 1 $) in each element of both matrices as 
+\begin{equation}
+    \label{eqn:Teff}
+    T_{\rm eff}^4 = \frac{4}{3}\frac{T^4}{\kappa \Sigma}
+,\end{equation}
+where $\Sigma$ is the surface density of each element of the matrix.
+
+We obtained the flux emitted by each pixel using Planck's formula:
+\begin{equation}
+    \label{eqn:planck}
+    dL_{\nu} \equiv B_{\nu }  \, {\rm d}\nu {\rm d}A  = \frac {2h \nu^3}{c^2}\, \frac{{\rm d}\nu}{  \exp\left({\frac{h\nu}{k_{\rm B}T_{\rm eff}}}\right) -1 } {\rm d}A 
+,\end{equation}
+where $h$ is the Planck constant, $k_{\rm B}$ is the Boltzmann constant, and d$A$ is the area of each element.
+In order to analyse the different contributions to the emission from each part of the disc, we have divided the simulated domain into five different regions: the two mini-discs that extend from the sink radius of each component to the Roche Lobe size, the streams region that extends from outside the Roche Lobe out to $r = 3a$, an inner part of the disc, $3a < r < 5a $, and an outer part of the disc,  $5a < r < 10a $. 
+For each region, we computed the SED through the sum of each pixel flux obtained with Eq.~\eqref{eqn:planck}. 
+
+We further added the non-thermal emission that is expected to originate from the corona using the correction to the bolometric luminosity in \cite{Duras2020} in the hard X-ray (i.e. $0.2 - 10 \, \rm{keV}$) band.
+We assume that the corona emission is proportional to the total luminosity of the mini-discs through the correction factor, $K_{\rm band}$, which in this case is defined as the ratio between the mini-discs' luminosity, $L_{\rm MDs}$, and the luminosity in a given spectral band, $L_{\rm{band}}$; that is, $K_{\rm band}= L_{\rm MDs}/L_{\rm band}$. We assume the mini-discs to behave similarly to single MBH AGN discs, where the X-ray emission is produced by the corona, as there is no clear description available to date of the properties of the non-thermal corona in the accretion discs that form around the binary components.
+Following \citep{Duras2020}, the X-ray correction factor, $K_{\rm X}$, is
+\begin{equation}
+    \label{eqn:kx}
+    K_{\rm X}(L_{\rm MDs}) = a \left [ 1 + \left (\frac{\log(L_{\rm MDs}/L_{\odot})}{b} \right )^c \right ]
+,\end{equation}
+where $a,b,c$ are best-fit parameters shown in Table 1 in \citep{Duras2020}.
+Moreover, we assumed that the hot corona emission produces a power law spectrum with $\nu L_\nu\propto\nu^{-0.7}$ 
+\citep{Regan2019}.
+
+Since we ultimately want to obtain LCs to compare with future observations, we placed the source at different distances from the observer and, assuming isotropic emission, we computed the total flux in different bands integrating the observed flux, $f_{\nu}(\nu_{o})$, over a specific range of frequencies:
+
+
+\begin{equation}
+    \label{eqn:flux}
+    F = \int_{\nu_1}^{\rm \nu_2} f_{\nu}(\nu_{o}) \, d \nu_{\rm o} = \int_{\nu_1}^{\rm \nu_2} \frac{l_{\rm \nu}(\nu_e)}{4\pi d_{\rm L }^2}(1+z) \, d \nu_{\rm o},
+\end{equation}where $l_{\nu}(\nu_{e})$ is the luminosity as a function of the frequency, $\nu_e$, and $d_{\rm L }$ is the luminosity distance \citep{Hogg2000, hogg2002k}.
+%%%%%%%%%%%%%%%%%% OLD PART %%%%%%%%%%%%%%%
+%\begin{equation}
+    %\label{eqn:flux}
+    %F=\frac{L_{\rm band}}{4\pi d_{\rm L }},
+%\end{equation}
+
+%where $L_{\rm band}$ is the luminosity integrated over a specific range of frequencies and $d_{\rm L }$ is the luminosity distance \citep{Hogg2000}. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+We then analysed the changes in the observed flux over time in order to identify modulations that might signal the presence of a MBHB. 
+
+In order to understand whether these changes in the observed flux are detectable, we need to simulate a realistic detection scenario, taking into account the sensitivity limit of the employed survey and its observation time span. In particular, in this study we focus on MBHB observability with the VRO. To infer the observability of the systems, we adopted a similar method to the one used by \cite{Kelly2019}.
+We added to the simulated fluxes a Gaussian noise with variance given by the telescope's $5 \sigma$ sensitivity in the considered band. We then performed a fast Fourier transform (FFT) onto a limited number of cycles (commensurate to a survey time span of $\approx 10$yrs) and qualitatively identified whether prominent peaks in the spectrum appear and what their origin is. We defer a more thorough statistical study of the detectability of these features to a follow-up study.
+The VRO $5 \sigma$ sensitivities in different bands are listed in Table \ref{tab:LSSTbands}. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{table}
+\caption{Frequency bands and 5-$\sigma$ flux sensitivities of the VRO telescope's optical filters.}
+    \resizebox{\columnwidth}{!}{%
+        \begin{tabular}{lccccccr}% 6+2 columns, alignment for each
+                \hline
+        \noalign{\smallskip}
+                 & Y & Z & I & R & G & U &  \\
+        \noalign{\smallskip}
+                \hline
+        \noalign{\smallskip}
+                lower & 2.83 & 3.25 & 3.67 & 4.34 & 5.43 & 7.5 & $\times 10^{14} \, \rm{ Hz }$ \\
+        \noalign{\smallskip}
+        upper & 3.16 & 3.67 & 4.34 & 5.43 & 7.5 & 8.57 & $\times 10^{14} \, \rm{ Hz }$ \\
+        \noalign{\smallskip}
+        $5\sigma$ sensitivity flux & 40.58 & 9.23 & 4.47 & 3.11 & 2.32 & 6.04 & $\times 10^{-15} \, \rm{ erg/s/cm^2 }$ \\
+        \noalign{\smallskip}
+        \hline
+        \noalign{\smallskip}
+        \noalign{\smallskip}
+        \noalign{\smallskip}
+        \end{tabular}}
+    \tablefoot{\url{https://pstn-054.lsst.io/PSTN-054.pdf} for magnitude values details.}
+    \label{tab:LSSTbands}
+
+    %The band ranges here reported are rounded to the second decimal place and expressed in Hertz.
+      
+\end{table}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}
+        \begin{center}
+        \includegraphics[width=\columnwidth]{Figures/e09q01_hr01_md001_3aall.pdf}
+    \caption{Time evolution of the disc aspect ratio, H/R, as a function of radius for circular binaries (top panel) and eccentric binaries (bottom panel) with a mass ratio of $q=1$ (left column) and $q=0.1$ (right column). For all the simulations, we report the thickness profile at different times with different colours. All the simulations start with $H/R=0.1$. The aspect ratio decreases during a transient phase and increases again, reaching a constant value, similar for all the simulations: in the inner part of the disc, $H/R \sim 0.08-0.09$, while in the outer regions of the disc, $H/R \sim 0.04-0.06$. Unequal-mass binaries stabilise their disc temperature faster compared to equal-mass binaries.
+    \label{fig:HR}
+    }
+        \end{center}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+%%%%%%%%%%%%%%%%% RESULTS %%%%%%%%%%%%%%%%%%
+\section{Results}
+\label{Results}
+
+We here present the results that we obtained from our numerical simulations. In particular, we show the time evolution of the disc aspect ratio, $H/R$, and  briefly discuss the evolution of the binary orbital eccentricity and semi-major axis.  We then focus on the disc emission and on the LCs in various frequency bands and on the effect that the explored parameters (i.e. mass ratio, eccentricity, and redshift) have on the detectability of the EM emission. 
+
+%%%%%%%%%%%%%%%%% HR and BINARY PROP %%%%%%%%%%%%%
+\subsection{Disc and binary evolution}
+\label{Results_HR_ae}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure*}
+    \includegraphics[width=\textwidth]{Figures/e0q1_hr01_md001_12989_PgasPrad.pdf} \\
+    \caption{Surface density map, effective temperature map and SEDs for a circular equal-mass binary. From the top to the bottom row: the binary at four different orbital phases at time $t = 1298 \, P_{\rm b}$. The left, middle, and right panels in each row show the surface density map in the $x-y$ plane, the effective temperature map in the $x-y$ plane and the SEDs. The tick spacing on the $x$ and $y$ axes in the left and central panels is 2$a_0$, where $a_0$ is the initial binary semi-major axis.
+    The surface density upper limit is set at $1.8 \times 10^5 \, \rm{g \, cm^{-2}}$. 
+    In the SEDs, the contribution of the mini-discs around the primary and the secondary black hole is shown by the dash-dotted blue and orange lines, respectively, the stream region is represented by the dashed green line while the inner and outer part of the circumbinary disc are represented by the dash-dotted red and purple lines, respectively. The corona contribution is shown by the dotted brown line. The solid grey line shows the total emitted spectrum. }
+    \label{fig:SEDe0q1}
+\end{figure*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Since our numerical simulations are 3D and the gas is allowed to change its temperature with time, we can resolve gas shocks and investigate the effect they have on the final temperature of the disc.
+As showed by previous simulations in the literature \citep{artymowicz1996, Hayasaki2007, Macfadyen2008,roedig2011, Shi2012, farris2014, Franchini2022, Westernacher2022, Westernacher2023}, part of the streams of gas that enter the cavity is flown back to the disc, creating shocks at the inner edge of the cavity wall that affect the disc aspect ratio. 
+Figure \ref{fig:HR} shows the evolution of the aspect ratio profile at $t = 0, 500, 700, 900, 1000, 1300 \, P_{\rm B}$ for the circular cases (upper panels) and eccentric cases (lower panels) with mass ratio $q=1$ (left panels) and $q=0.1$ (right panels).
+Since $Q > 1$, the disc cools down until $Q \sim 1$. Indeed, the aspect ratio decreases to $H/R \sim M_{\rm D }/M_{\rm B} \sim 0.01$ within the first few orbits.
+In all our simulations, the disc then re-expands in the vertical direction and the aspect ratio increases, eventually reaching a stable profile. 
+This is consistent with the disc temperature increase from an initial value at the inner edge of $T_{\rm eff}\sim 10^3 \, K$ to a final value of $T_{\rm eff}\sim 10^4 \, K$. 
+Since gas particles are continuously flung back into the cavity wall, the shocks that occur in this region maintain the disc aspect ratio to $H/R\sim 0.08$, regardless of the choice of binary mass ratio and eccentricity. The radiative cooling in the outer parts of the disc is more efficient and the aspect ratio reaches eventually a value $H/R\sim 0.04$.
+Equal-mass binaries have a bigger quadrupole mass moment that exerts larger torques on the inner edge of the disc cavity, eventually producing more prominent streams and stronger shocks. As a consequence, discs around equal-mass binaries reach a stable configuration after $\sim 1000 \, \rm{P_{B}}$ ($e=0$) and $\sim 900 \,\rm{P_{B}}$  ($e=0.9$), while it takes only  $\sim 700 \, \rm{P_{B}}$ for discs around unequal-mass binaries, regardless of eccentricity.
+
+The evolution of the binary semi-major axis depends on the contributions to the net torque from two distinct components: the gravitational torque exerted by the circumbinary disc on each binary component and the gas accretion torque \citep[see][for the detailed computation of the two contributions]{roedig2011}. 
+Early numerical simulations of circumbinary discs showed the binary inspiral to be aided by the presence of the disc \citep{artymowicz1994,artymowicz1996,ArmitageNatarajan2002}.
+The findings of more recent 2D, fixed binary orbit, hydrodynamic simulations show that the angular momentum transfer onto the binary is positive and this leads the expansion of the binary \citep{Munoz2019, Duffell2019, Munoz2020, Moody2019}. Using a similar numerical scheme, \cite{Tiede2020} found that the fate of the binary depends on the disc temperature, i.e. on the disc aspect ratio. They find the threshold for expansion to be $H/R>0.04$, while 3D smoothed particle hydrodynamics (SPH) simulations of locally isothermal discs find the threshold to be much higher, i.e. $H/R=0.2$ \cite{HeathNixon2020}. 
+In a recent study, \cite{Franchini2022} show, employing 3D MFM simulations where hyper-Lagrangian resolution was achieved via adaptive particle splitting (the same method employed here), that the binary inspiral-outspiral depends also on the disc viscosity.
+Numerical simulations that study the regime where the disc self-gravity cannot be neglected, have found that the interaction between the binary and its gaseous disc leads the binary to shrink as a consequence of the time evolution of the disc temperature, regardless of its initial value \citep{Cuadra2009, roedig2012, Franchini2021}.
+
+The interaction between the binary and its circumbinary disc changes the binary eccentricity as well \citep{goldreich1980}. Based on analytical arguments, \cite{Artymowicz1991} shown that an equilibrium eccentricity should exist, which was later confirmed by the SPH simulations of \cite{roedig2011}, who derived an equilibrium eccentricity $0.5<e<0.8$ for comparable mass binaries, linking the precise value to the disc cavity size.
+More recent 2D, fixed orbit, hydrodynamic simulations found equal-mass binaries to reach an equilibrium eccentricity value around $\sim 0.45$ \citep{Zrake2021,DOrazio2021}. Using a very similar numerical scheme, \cite{Siwek2023} finds that binaries with mass ratios $q>0.2$ evolve towards an equilibrium eccentricity of $e\sim 0.5$.
+
+While these latter works \citep{Franchini2022, Zrake2021,DOrazio2021} assumed the disc to be locally isothermal, here we have allowed the disc temperature to change with time due to PdV work heating and radiative cooling. 
+We find the interaction between the binary and the circumbinary disc to cause the binary to shrink, regardless of the initial conditions. 
+In particular, $a$ decreases by $ \sim 1\%$ over $\sim 1000$ orbits in all cases, except for the binary with $q=0.1$ and $e=0.9$. In this case, the binary initially experiences an expansion of $0.05\%$ over the first 600 orbits, likely because of the very high eccentricity that brings the lower mass MBH very close to the initial cavity edge. This is only a transient phase, as the binary then carves a larger cavity compared to the circular case and starts to shrink, transferring angular momentum to the circumbinary disc.
+We find the eccentricity value to remain relatively constant during the whole simulation for initially eccentric binaries, while circular ones feature a mild eccentricity increase, reaching $e \sim 0.04$ in the equal-mass case and $e \sim 0.06$ in the unequal-mass case.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure*}
+    \centering
+    \includegraphics[width=\columnwidth]{Figures/e0q1_hr01_md001OpticAll_Flux_bands_10000_0.1_new.pdf}
+    \includegraphics[width=\columnwidth]{Figures/e0q01_hr01_md001OpticAll_Flux_bands_7061_0.1_new.pdf}
+        \caption{\label{fig:LCse0} Light curves and their FFT for circular mass binaries at $z = 0.1$.  The left and right panels are for binaries with $q=1$ and $q=0.1$, respectively. In each panel, the first row shows the accretion rate (grey line) and the flux (orange line) integrated over the whole frequency range we consider ($10^8-2.8 \times 10^{19} \, \rm {Hz}$). The left column shows the flux evolution in time while the right column shows the FFT of the accretion rate and flux over 300 orbits in the time window $t=1000-1300 \,P_{\rm B}$ (left panel) or $t=760-1060 \,P_{\rm B}$ (right panel), normalised to unity, in function of $\rm f/f_{K}$ with $\rm f_{K}$ the Keplerian frequency of the binary. The second, third, and fourth rows show the flux and FFT in the optical Z band, UV band, and soft X-ray band, respectively. The optical flux was computed taking into account an extra Gaussian noise component, as is described in Sect. \ref{Emission model}.
+ }
+\end{figure*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%% SEDs AND LCs %%%%%%%%%%%%%%%%%%
+\subsection{Spectral energy distributions}
+\label{Results_SEDsLCs}
+
+We computed the EM emission from our numerical simulations by using Planck's Law (see Eq. \ref{eqn:planck}), taking into account both the gas and the radiation pressure contribution when computing the disc temperature, as is mentioned in Sect. \ref{Emission model}. We divided our simulated domain into five different regions: the mini-disc region that extends from the sink radius of each binary component out to the Roche Lobe size, the stream region that extends from outside the Roche Lobe out to $r = 3a$, and the inner ($3a < r < 5a $) and outer ($5a < r < 10a $) parts of the disc.
+For each region, the total SED was obtained by integrating the flux emitted by each pixel over the whole spatial domain.
+
+Figure \ref{fig:SEDe0q1} shows the surface density maps, the effective temperature maps, and the SED obtained for each region at $t = 1298 \, P_{\rm B}$ for the circular equal-mass binary. Each panel line shows a different orbital phase of the binary. Periodically, a small fraction of gas enters the cavity and feeds the mini-discs around each binary component through the streams.  
+We assume an initial disc temperature profile that decreases with radius as $R^{-0.5}$.
+The inflow of gas into the cavity combined with the exchange of material among the mini-discs generates shocks that increase the gas temperature, resulting in an effective temperature of $T_{\rm eff} \sim 10^4 \,$K, warmer than the outer parts of disc. 
+
+
+As is shown by the four different orbital phases in Fig. \ref{fig:SEDe0q1}, the mini-disc and stream temperature variations occur within an orbital period, producing EM emission variations. The spectra obtained by analysing the emission from the mini-discs and the streams region (blue, orange, and green lines) do indeed exhibit more variability than the inner and outer regions of the disc (red and purple lines). 
+The emission peak of the mini-discs and the streams region changes frequency between the optical and UV band ($\log\,(\nu/\rm{Hz}) \sim 14.6-15.2 $) spanning one order of magnitude in luminosity, while the emission peak of the circumbinary disc remains between the IR and optical band during one orbital period.
+
+In the highly eccentric $e=0.9$ case (see Fig. \ref{fig:SEDe09q1}), the emission from the cavity shows more variability than in the circular case, due to the geometry of the orbit of the components. 
+Indeed, the emission peak of the mini-discs and the stream component changes between the optical and UV band ($\log\,(\nu/\rm{Hz}) \sim 14.8-15.4$) spanning two orders of magnitude in luminosity ($\log\,(\nu L_{\rm{\nu}}/{\rm erg} \, {\rm s}^{-1}) \sim 39-41$).
+
+In Appendix \ref{sec:appendix}, we show the surface density maps, the effective temperature maps, and the SEDs for unequal-mass binaries ($q=0.1$) for both the circular (Fig. \ref{fig:SEDe0q01}) and  the eccentric case (Fig. \ref{fig:SEDe09q01}). 
+We find the mini-discs to have a lower temperature in the  circular unequal-mass case with respect to the circular equal-mass case shown in Fig. \ref{fig:SEDe0q1}. Indeed, the exchange of material between the mini-discs does not produce significant shocks and the temperature does not increase as much as in the circular case. 
+Therefore, the emission peak of the mini-discs is shifted to lower frequencies, $\log\,(\nu/\rm{Hz}) \sim 14.8 - 15.2$, and  spans  $\sim $ 2 orders of magnitude in flux within one orbital period. 
+
+In the eccentric unequal-mass case (Fig. \ref{fig:SEDe09q01}), the mini-discs are significantly depleted as the high eccentricity of the binary causes them to strongly interact with each other and the material is either promptly accreted or flung back to the cavity wall. 
+We note that in this case, the variability of the emission from the mini-discs is not totally hidden by the emission from the streams region but does change the spectrum at high frequencies within one orbital period. 
+
+In all of the simulations, by construction, the emission of the X-ray corona tracks that of the mini-discs, as per Eq.~\eqref{eqn:kx}; therefore, depending on the simulation, it can vary by up to two orders of magnitude in luminosity.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure*}
+    \centering
+    \includegraphics[width=\columnwidth]{Figures/e09q1_hr01_md001_3aOpticAll_Flux_bands_9000_0.1_new.pdf}
+    \includegraphics[width=\columnwidth]{Figures/e09q01_hr01_md001_3aOpticAll_Flux_bands_9000_0.1_new.pdf}
+    \caption{\label{fig:LCse09} 
+    Same as Fig. \ref{fig:LCse0} but for eccentric $e=0$ binaries. Here, the Fourier transform of the accretion rate and fluxes is computed over 400 orbits in the time window $t=900-1300 \,P_{\rm B}$. 
+}
+\end{figure*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\subsection{Light curves}
+\label{LCs}
+
+
+We integrated the luminosity emitted in each disc region in order to produce the LCs, showing the flux variation in the system as a function of time. We assume the source to be at redshift $z=0.1$ and investigate the effect of redshift on source observability in the next subsection. 
+We have calculated the bolometric flux across the whole frequency range we used to produce the spectra — $10^8-2.8 \times 10^{19}$ Hz ($4.13 \times 10^{-10} - 41.3$ keV) — and in three different regions of the EM spectrum: in the optical, using the VRO filters frequency bands (see Table \ref{tab:LSSTbands}), in the near-UV ($1.0-1.5 \times 10^{15}$ Hz or $4.13-6.20$ eV), and in the soft X-ray ($7.25-48.3 \times 10^{16}$ Hz or $0.3-2$ keV).
+The upcoming VRO will perform a 10-year survey of the sky in the southern hemisphere and it will potentially be able to capture the EM emission from the accretion disc of MBHBs. 
+We therefore focus most of our attention on the optical emission of our simulated systems, and we consider the VRO  Z, I, R, and G filters (see Table \ref{tab:LSSTbands} for details), and the instrument sensitivity, as is described in Sect. \ref{Emission model}.
+
+The results are shown in Figs. \ref{fig:LCse0} ($e=0$) and \ref{fig:LCse09} ($e=0.9$). In each panel of the two figures, the left column shows the LCs computed in all the considered  bands together with the accretion rate, (grey line in the top panel), while the right column shows the FFT of the accretion rate and of the fluxes computed over 300 orbits, $t = 1000-1300 \, P_{\rm B }$ ($t = 760-1060\, P_{\rm B }$ for the case $q=0.1$, $e=0$), normalised to unity. In the VRO filters, the flux was computed including extra Gaussian stochastic fluctuations mimicking the effect of the VRO sensitivity, as is described in Sect. \ref{Emission model}. In all cases, we see that the emission is brighter in the optical and UV band (except in the eccentric unequal case), while it is dimmer in the soft X-ray, consistent with our SEDs (see Figs. \ref{fig:SEDe0q1}--\ref{fig:SEDe09q01}). 
+
+Indeed, in our model the only contribution that produces luminosity at high frequencies is the corona. Another clear trend shown in all simulations is that variability tends to increase with frequency. In fact, while the flux in the VRO bands changes within a factor of 2-3, the UV and X-ray fluxes can experience oscillations of more than one order of magnitude, in particular in eccentric cases. This is consistent with the physics of the emission from the disc. The optical mostly comes from the circumbinary disc, which is relatively steady and only mildly affected by the binary. Conversely the UV emission is dominated by the streams and mini-discs, which are strongly impacted by the dynamics of the binary, and thus highly variable. Finally, the X-ray corona is directly connected to the UV emission of the mini-discs, which is the component showing the highest variability. The large amplitude variation in the UV flux that we find suggests that these systems might be identifiable by future wide-field UV facilities, such as ULTRASAT \citep[scheduled for launch in 2027,][]{ultrasat} and UVEX  \citep[scheduled for launch in 2030,][]{uvex}. 
+
+The left panel in Fig. \ref{fig:LCse0} displays a number of interesting features. It is  clear that the main modulation pattern is not related to the binary period, but occurs on longer timescales, and this is true both for the LCs and for the accretion rate. This is confirmed by the FFTs, which show two clear peaks at $0.2\,f_{\rm K}$ and $0.4\,f_{\rm K}$ (second harmonic), where $f_{\rm K}$ is the Keplerian frequency of the binary. This periodicity is associated with the ‘lump’, an over-density region that obits at the cavity edge with an orbital period a few times the binary orbital period, as reported in previous works \citep{Macfadyen2008, Cuadra2009, Krolik2010, roedig2011, Noble2012, Shi2012, dorazio2013, farris2014, Bowen2018, Tang2018, Westernacher2022, Westernacher2023}. It is also interesting to notice that, while the accretion rate shows an intricate structure of harmonics \citep{farris2014,Munoz2019,Franchini2023}, this is much less evident in the LCs, where there is significant power only at $2\,f_{\rm K}$, which corresponds to one half of the orbital period. 
+The situation is strikingly different when the mass ratio of the binary is small (right panel in Fig. \ref{fig:LCse0}). In this case, both the accretion rate and the LCs show a clear periodicity on the binary period, which is confirmed by the FFT, where clear peaks are visible at $1\,f_{\rm K}$ and $2\,f_{\rm K}$ (second harmonic). We also note that there is no clear power at $f<f_{\rm K}$. This is because no significant lump forms in this case, since perturbations induced by the binary are not sufficient to excite an $m=1$ mode at the inner edge of the circumbinary disc cavity. This is in line with results of 2D simulations in the literature \citep[see e.g.][]{farris2014}.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure*}
+        \begin{center}
+    \includegraphics[width=18cm]{Figures/e09q01_hr01_md001_3aOptic_FFTmean_bands_comparison_periods_GFILTER_7.pdf}
+    \caption{Fast Fourier transform of LCs from simulations. The top panels are for simulations of circular binaries, while the bottom panels are for simulations of eccentric $e=0.9$ binaries. The left and right columns are for binaries with $q=1$ and $q=0.1$, respectively. The first row of each case shows the FFT of the Optical G band flux (blue line) and the FFT of the accretion rate (brown line) computed over 5-orbit windows within a total of 300/400 orbital periods at redshift $\rm{z=0.1,\,0.4,\,0.7}$. The second and the third rows show the FFT computed over 10- and 50-orbit windows, respectively. 
+}
+    \label{fig:FFTs_comparison_Ltrue}
+        \end{center}
+\end{figure*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+Results for the eccentric binary simulations are shown in Fig. \ref{fig:LCse09}. The equal-mass case (left panel) shows an interesting periodicity structure. The fluxes emitted in the optical bands all exhibit a clear modulation of a factor $\approx2$, combining periodicities related to both the binary and the lump dynamics. In the FFT, we can clearly see the lump periodicity at $f\approx 0.15f_{\rm K}$: this is lower than the circular binary case, as the cavity is larger and the period associated with its inner edge is $\propto R^{3/2}$. Contrary to the circular equal-mass case, clear peaks are visible also at $1\,f_{\rm K}$ and $2\,f_{\rm K}$ (second harmonic), driven by the binary orbital period. %\as{Maybe there is a hint of beating frequencies as well?} 
+In the eccentric unequal-mass case instead (right panel), the lump periodicity is absent and the peak at $f\sim 2 f_{\rm K}$ is less prominent than what was found in the circular unequal binary case.
+We have also explored the effect of placing the binary at different redshifts. For simplicity, we discuss the main results without including plots. Besides the obvious difference in flux, making closer binaries easier to detect, there is also some minor change difference in the displayed periodicities due to the redshifting of the spectra at $z<\,0.6$. At redshifts of $z>\,0.6$, fluxes are very noisy and periodicity peaks are not always distinguishable in all the optical bands. However, all the main features described here for binaries at $z=0.1$ remain valid.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure*}
+    \begin{center}
+    \includegraphics[width=18cm]{Figures/e09q01_hr01_md001_3aOptic_FFTmean_bands_comparison_periods_GFILTER_7_L100.pdf}
+    \caption{Same as Fig. \ref{fig:FFTs_comparison_Ltrue} but assuming that the emitted luminosity is 100 times higher than the luminosity we obtained from simulations. 
+    }
+    \label{fig:FFTs_comparison_L100}
+        \end{center}
+\end{figure*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Periodicity identification in the VRO survey}
+
+We have so far computed the FFT over a large number of orbits in order to distinguish the different periodicities associated with binaries with different mass ratio and eccentricity. However, VRO might only have a handful of binary orbits at its disposal in its 10-year observational campaign. This is because binaries with periods shorter than a few years are expected to be primarily driven by GW emission, meaning that wide binaries (with long periods) live longer and are more likely to be present in the data \citep[see][]{Kelly2019}. In fact, the binary period of 1 year considered here was chosen to be representative of the typical system that might be detected with VRO. 
+
+Since we output ten snapshots per binary orbit, the cadence of our simulated lightcurves is roughly 36 days. This sampling rate is sparser compared to what future VRO surveys are expected to  achieve. In fact, the VRO Deep Drilling Fields will be covered with daily cadence, whereas in the most optimal scenario, the main Wide Fast Deep survey will get back on the same target at a roughly weekly cadence.
+Therefore, our simulated data miss high frequency information that, if present, might be detected in real observations. However, we stress here that our lightcurve sampling rate is good enough to cover periodicities occurring at the binary and at the inner disc cavity orbital frequencies, which are the most prominent signatures proposed in the literature.
+To get a qualitative idea of whether the periodicities found in the previous section can be identified in VRO data, we have computed the FFT over 5, 10 and 50 binary orbits along a total of 300 orbits for the circular binary cases and 400 orbits for the eccentric binaries, essentially shifting the FFT window within these few hundred orbits. We have then computed the average FFT and its standard deviation (STD) at different redshifts, $z=0.1,\,0.4,\,0.7$.
+
+
+In Fig. \ref{fig:FFTs_comparison_Ltrue} 
+we show the results for each of the four binaries we considered. In each plot, the first row shows the mean FFT both of the flux in the optical G band (blue line) and of the accretion rate (brown line) using a 5-orbit window at redshift $z=0.1,\,0.4,\,0.7$ from the left to the right. The second and the third rows show the results obtained with 10- and 50-orbit windows, respectively. We note that, given a VRO survey of 10 years, 5, 10, and 50 orbits correspond to binaries with a period of two years, one year, and 2.4 months, respectively. 
+
+The main result of this exercise is that periodicities are more easily observed in unequal-mass binaries than in equal-mass ones. In fact, starting from the top left panel of Fig. \ref{fig:FFTs_comparison_Ltrue}, we see that periodic features in circular equal-mass binaries will be extremely hard to pick. With only 5 orbits, the lump periodicity falls in the lowest frequency bin of the Fourier decomposition and cannot be securely identified. Other periodicities are much weaker and do not show significant power in the FFT over 5 orbits. Things improve with increasing numbers of orbits and the lump periodicity clearly emerges when considering 50 orbits.
+Conversely, the circular unequal-mass case (top right panel) shows that the peaks at $f=f_{\rm K}$ and $f=2f_{\rm K}$ are already prominent after only 5 orbits, which is very promising, and the situation naturally improves if more orbits are sampled.
+
+A similar situation is observed for eccentric binaries, with periodicities that are more prominent in the unequal-mass case. There are noticeable differences though. In the equal-mass case (lower left panel), periodicities at $f=f_{\rm K}$ and $f=2f_{\rm K}$ start to emerge already after 5 orbits. However, the variance is large, meaning that these features are not prominent and might be hard to detect. The situation naturally improves with the number of orbits, but a large variance remains, even after 50 orbits. It is also interesting to note that the lump frequency, clearly present in the circular case, does not seem to emerge here. In the eccentric unequal-mass case (lower right panel), the orbital periodicity is clearly identified already after 5 orbits, although the second harmonic is much less prominent than in the circular case.
+
+In all cases, the variance tends to increase with redshift. This is a natural effect due to the inclusion of the VRO sensitivity limit in the computation. In particular, the VRO telescope could encounter substantial difficulties in detecting flux periodicities emanating from binaries with mass $M_{\rm B} \sim 10^6 M_{\odot}$ at redshift $z > \, 0.5$. This is clearly illustrated by the $z=0.7$ panels of Fig. \ref{fig:FFTs_comparison_Ltrue}, where the peaks generally observable at $z=0.1, 0.4$ tend to be swamped in the variance.
+
+This does not necessarily mean that VRO cannot identify LISA MBHB precursors beyond $z\approx 0.5$. In fact, the bolometric luminosity of the systems simulated here is $L_{\rm bol}\approx 10^{42}$ erg s$^{-1}\approx 0.01 L_{\rm Edd}$. The largely sub-Eddington luminosity is mainly due to the relatively low temperature of the gas, reaching only $T\approx 3\times 10^4$K, which is a factor of a few cooler than the temperature of a standard thin disc around a $10^6$M$_\odot$ MBH \citep{2002apa..book.....F}. This is also expected, due to the fact that $R_{\rm sink}=0.05a \sim 100 R_{\rm ISCO}$, as is mentioned in Sect. \ref{discmodel}, and the overall luminosity of the system might indeed be higher.
+We therefore explore here also the detectability of a putative brighter binary by simply multiplying the emission by a factor of 100 — that is, $L=100 \times L_{\rm true}$ — thus preserving all the variability properties found in our simulations. Although this is not self-consistent with our simulation, we consider it a useful exercise to assess VRO performances against lightcurves that could be representative of an $M=10^6$M$_\odot$ MBHBs emitting at the Eddington luminosity, or potentially of a more massive system of $M=10^8$M$_\odot$ but emitting at $\approx 0.01 L_{\rm Edd}$.
+We repeated the process described above: we analyse the FFT of the flux over 5, 10 and 50 binary orbits along a total of 300 orbits for the circular binary cases and 400 orbits for the eccentric binaries and we compute the average FFT and its STD for different redshifts $z =\, 1, \,2, \,3$. Results are shown in Fig. \ref{fig:FFTs_comparison_L100}. Most of the features discussed for the case $L=L_{\rm true}$ are still observed, but now peaks in the FFT can be easily identified up to $z=2$, around cosmic noon. A full statistical assessment of VRO capabilities of correctly identifying these peaks will be the subject of future work. 
+
+%\subsection{Caveats}
+
+
+%%%%%%%%%%%%%%%%% CONCLUSION %%%%%%%%%%%%%%%%%%
+
+\section{Conclusions}
+\label{sec:conclusions}
+
+In this work, we computed SEDs and multi-wavelength LCs from 3D numerical simulations with hyper-Lagrangian refinement of milli-parsec-scale MBHBs embedded in thin circumbinary gaseous discs. The discs in our simulations are described by an adiabatic equation of state. We therefore allowed the gas to heat due to shocks, viscosity, and PdV work, and to cool via black-body radiation.
+We explored binary eccentricities of $e=0, \, 0.9$ and a mass ratio of $q=1,\, 0.1$, and computed LCs in different bands, placing the sources at different redshifts, $z=0.1, \,0.4, \, 0.7$. 
+
+We investigated the evolution of the disc aspect ratio, $H/R$, the binary semi-major axis, $a$, and the binary eccentricity, $e$. We found that, after an initial phase in which the black-body cooling dominates the gas thermodynamic evolution, the disc thickens again, reaching $H/R \sim 0.08$ in the inner parts and maintaining a lower $ H/R \sim 0.04$ (corresponding to a lower temperature) in the outer part of the disc, regardless of the initial choice of binary mass ratio and eccentricity. The final equilibrium state is, in fact, mostly driven by the initial disc mass and radial extension, which are the same in all simulations. 
+Therefore, self-regulation \citep{lodato2007sg} drives all discs to reach a similar aspect ratio at the end of the transient phase.
+We find the interaction between the binary and the circumbinary disc to cause the binary to shrink, regardless of the initial conditions. Since in our model the temperature changes with time, this result further supports previous findings in the literature \citep{roedig2014,Franchini2021}. 
+We find that circular orbits tend towards higher eccentricity values, in agreement with previous works \citep[e.g.][]{DOrazio2021, Siwek2023}, whereas very eccentric binaries experience a negligible eccentricity evolution within the timeframe of our simulations. We notice, however, that we followed the evolution of the relaxed disc only for about 400 orbits, corresponding to 400 years. It might be that the eccentricity evolution for very eccentric binaries occurs on a longer timescale than the one simulated here. Indeed, here we simulated the binary evolution over $\sim 1300 \, yr$, while in both the cited works the timescale is longer.
+
+We computed the SEDs from the circumbinary discs in our simulations assuming black-body emission.
+We find that the luminosity emitted by the innermost region of the disc — the mini-discs and the streams — exhibits more variability than the outer parts of the disc.
+In the circular equal-mass case, the emission peak of the mini-discs and the streams region changes frequency between the optical and UV band ($\log\,(\nu/\rm{Hz}) \sim 14.8 - 15.4$), spanning one order of magnitude in luminosity. In the unequal-mass case, the mini-discs have a lower temperature due to the absence of shocks produced by the exchange of material among the binary components. Thus, the emission peak of the mini-discs is shifted to slightly lower frequencies — $\log\,(\nu/\rm{Hz}) \sim 14.8-15.2$ — and spans up to $\sim 2 $ orders of magnitude in luminosity. 
+In both the eccentric binary cases, we find that the emission from the mini-discs is completely (in the equal-mass case) or partially (in the unequal-mass case) covered by the streams emission. 
+The X-ray photons are provided by the corona, which we assume to have an emission proportional to that of the mini-discs. Therefore, the luminosity in the X-ray band displays the highest variability, which can reach up to two orders of magnitude for unequal-mass binaries.
+
+We computed the LCs in different frequency bands, mainly focussing on the optical window that will be probed by VRO. We calculated the (thermal) flux emitted over the whole EM spectrum that we used to produce the SEDs; that is, within the frequency band $10^8-2.8 \times 10^{19}$ Hz  ($4.13 \times 10^{-10}-41.3$ keV), in the optical frequency band using the VRO filters, in the near-UV band within $1.0 - 1.5 \times 10^{15}$ Hz ($4.13-6.20$ eV), and in the soft X-ray band, in the range of $7.25-48.3 \times 10^{16}$ Hz ($0.3- 2$ keV).
+
+In almost all cases, the flux is notably higher in the UV band, while in the soft X-ray is dimmer, consistent with the shape of the SEDs. As the frequency increases, the flux variability grows, in particular in the UV and soft X-ray bands. Here, the flux oscillates by more than  an order of magnitude, while in the VRO optical bands fluxes vary within a factor of two, in line with the physics of emission from the disc.
+
+In the circular equal-mass case, both the flux and the accretion rate FFTs reveal clear peaks at $0.2 \, f_{\rm K}$ and  $0.4 \, f_{\rm K}$ associated with the lump periodicity. Moreover, in the LCs, a peak at $2 \, f_{\rm K}$ is also present, which corresponds to a periodicity of one half the binary orbital period. 
+In the eccentric equal-mass case, the lump periodicity is significant only in the optical and UV fluxes, while its amplitude is negligible in the soft X-ray band. This is probably due to the larger cavity carved by the binary, which causes the lump region to emit in the optical/UV band rather than in the soft X-ray band.  
+We indeed found the lump modulation peak to be shifted to $f_{\rm K} \sim 0.15$. This is consistent with the fact that the cavity is larger than in the circular equal-mass case since the period associated with its inner edge is $\propto R^{3/2}$.
+We note that we found evidence of lump periodicity only in equal-mass binaries. This is consistent with previous works that show the lump modulation amplitude to decrease with binary mass ratio \citep{dorazio2013}.
+Therefore, a lack of sub-orbital modulation in the presence of a clear orbital modulation might indicate a small binary mass ratio.
+We also found a prominent flux and accretion rate modulation over the orbital period of the binary and half of it in all the simulations, with the exception of the circular equal-mass case, which shows a a weak periodicity only at $2\, f_{\rm K}$.
+By exploring different redshifts, there are some minor change in periodicities at a redshift of $z<\, 0.6$, while at higher redshifts fluxes are very noisy and the periodicities are not always well distinguished.
+
+
+All the aforementioned considerations are valid when the FFT is computed over a large number of binary orbits (i.e. $300-400 \, P_{\rm B}$). However, the VRO survey is planned for 10 years and most compact MBHBs are expected to have periods of $\approx$years. 
+Therefore, we have computed the FFT of the flux and of the accretion rate over 5, 10, and 50 binary obits at different redshifts to make a more realistic assessment of the prominence of these periodicities in the VRO data. 
+In the circular equal-mass case, detecting periodicities is challenging, in particular with only five orbits. We found that, as the number of orbits used to compute the FFT increases, the periodicities become more distinct and the associated variance decreases, as was expected. Still, the identification of equal-mass, circular binaries appears to be the most challenging.
+Conversely, binaries with $q=0.1$ show promising results, with distinguishable peaks at $1\, f_{\rm K}$ and $2 \, f_{\rm K}$ even after five orbits. 
+Similar trends are observed in eccentric cases. 
+The lump periodicity is totally absent in all cases except for the circular equal-mass case, which shows a hint of lump periodicity when computing the FFT over 50 orbits. Thus, the chances of detecting it during a 10-year survey by assuming unequal MBHB with an orbital period of 1 year are negligible.
+
+Due to the intrinsic faintness of our system, $L_{\rm bol}\approx 10^{42}$ erg s$^{-1}$, the detectability of periodicities with VRO are limited to systems at $z<0.5$.
+As an exercise, we increased the luminosity of all our systems by a factor of 100, mimicking a MBHB of $M=10^6$M$_\odot$ emitting at the Eddington limit. We found that in this case, periodicities can be identified by VRO up to $z\approx 2$, opening the possibility of finding these systems in a large fraction of the co-moving volume of the Universe.
+
+In general, our results indicate that periodicities related to unequal-mass binaries will be easier to identify in VRO data, compared to equal-mass ones. Moreover, LCs from binaries with different properties (equal vs unequal mass, circular vs eccentric) are characterised by different distinctive modulations, hinting at the possibility (to be further investigated) of constraining the binary properties from their time-domain EM data. These data can inform current and future low-frequency GW searches with LISA and PTAs at different levels. Working at millihertz frequencies, LISA will detect MBHBs with orbital periods of $\sim$hours, in their late inspiral and final coalescence. Therefore, VRO can provide a census of LISA precursors; binaries that will coalesce in the LISA band within the next few million years. Measurements of their mass ratios, eccentricities, and environment from EM observations can then be used to set priors for LISA searches. Moreover, combined GW and EM information can be used to test our physical understanding of MBHB evolution. For example, we expect binaries evolving in circumbinary gaseous discs to feature high, aligned spins \citep{2010MNRAS.402..682D}. Therefore, a hypothetical large population of gas-rich MBHBs detected by VRO should translate into a number of spin-aligned systems detected by LISA. Conversely, working at nanohertz frequencies, PTAs have the potential to identify MBHBs with orbital periods comparable to those probed by VRO. It should be noted, however, that systems likely to be individually resolved by PTAs have masses $\gtrsim 10^9$M$_\odot$, orders of magnitude larger than those simulated here \citep{2015MNRAS.451.2417R}. If we assume that the trends we found with mass ratio and eccentricities in the EM signatures hold also at much higher masses, then putative multi-messenger observations of PTA sources will allow us to  constrain the parameters of the system. In fact, most PTA resolved sources will be monochromatic, meaning that from the GW signal we shall only be able to extract a wave amplitude. The identification of an EM counterpart will first provide a  measurement of the distance to the source, allowing one to estimate the source chirp mass from the amplitude. Moreover, distinctive periodicity features might help in constraining the binary mass ratio, allowing one to estimate the individual masses of the two black holes. It is therefore clear that refining our understanding of EM signals from MBHBs might prove extremely fruitful in the era of multi-messenger astronomy.
+
+In this work, we present advanced 3D simulations that improve the description of accreting MBHBs embedded in gaseous discs, which is fundamental in order to make more realistic predictions of the emission signatures of these sources.
+We note here that we included the effect that radiation pressure has in determining the gas temperature only a posteriori. The inclusion of radiation pressure on the fly is the subject of a future work (Cocchiararo et al. in prep). The inclusion of radiation pressure will allow us to obtain a more comprehensive model of these systems and possibly a better characterisation of their EM signatures. Finally, a wider exploration of the binary-disc parameter space using our numerical simulations is needed to make more robust observational predictions and will be the subject of future work.
+
+%%%%%%%%%%%%%%%%% ACNOWLEDGEMENTS %%%%%%%%%%%%%%%%%%
+\begin{acknowledgements}
+We thank Daniel Price for providing the {\sc phantom} code for numerical simulations and acknowledge the use of {\sc splash} \citep{Price2007} for the rendering of the figures.
+We thank Phil Hopkins for providing the {\sc gizmo} code for numerical simulations. 
+AF and AS acknowledge financial support provided under the European Union’s H2020 ERC Consolidator Grant ``Binary Massive Black Hole Astrophysics" (B Massive, Grant Agreement: 818691). AL acknowledges support by the PRIN MUR "2022935STW".
+FC thanks Nataliya Porayko, Golam Shaifullah and Enrico Panontin for helpful discussions and suggestions.
+\end{acknowledgements}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% WARNING
+%-------------------------------------------------------------------
+% Please note that we have included the references to the file aa.dem in
+% order to compile it, but we ask you to:
+%
+% - use BibTeX with the regular commands:
+%   \bibliographystyle{aa} % style aa.bst
+%   \bibliography{Yourfile} % your references Yourfile.bib
+%
+% - join the .bib files when you upload your source files
+%-------------------------------------------------------------------
+\bibliographystyle{aa} % style aa.bst
+\bibliography{bibliography}
+
+\newpage
+%%%%%%%%%%%%%%%%% APPENDIX %%%%%%%%%%%%%%%%%%
+\begin{appendix}
+\section{SEDs from unequal and/or eccentric binaries} \label{sec:appendix}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure*}
+    \includegraphics[width=\textwidth]{Figures/e09q1_hr01_md001_3a_12989_PgasPrad.pdf} \\
+    \caption{
+    Same as Fig. \ref{fig:SEDe0q1} but for the highly eccentric $e=0.9$ equal-mass binary.}
+    \label{fig:SEDe09q1} 
+\end{figure*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure*}
+    \includegraphics[width=\textwidth]{Figures/e0q01_hr01_md001_10059_PgasPrad.pdf} \\
+    \caption{ Same as Fig. \ref{fig:SEDe0q1} but for a binary with  mass ratio $q=0.1$ and eccentricity $e=0$ and at time $t = 1000 \, P_{\rm b}$.}
+    \label{fig:SEDe0q01}
+\end{figure*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure*}
+    \begin{center}
+    \includegraphics[width=\textwidth]{Figures/e09q01_hr01_md001_3a_12989_PgasPrad.pdf} \\
+    \caption{ Same as Fig. \ref{fig:SEDe0q1} but for a binary with  mass ratio $q=0.1$ and eccentricity $e=0.9$ and at time $t = 1298 \, P_{\rm b}$.}
+    \label{fig:SEDe09q01}
+    \end{center}
+\end{figure*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{appendix}
+\end{document}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Example below of non-structurated natbib references  
+To use the v8.3 macros with this form of composition of bibliography, 
+the option "bibyear" should be added to the command line 
+"\documentclass[bibyear]{aa}".
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Examples for figures using graphicx
+A guide "Using Imported Graphics in LaTeX2e"  (Keith Reckdahl)
+is available on a lot of LaTeX public servers or ctan mirrors.
+The file is : epslatex.pdf 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{appendix} First appendix
+
+\longtab[1]{
+\begin{landscape}
+\begin{longtable}{lrcrrrrrrrrl}
+...
+\end{longtable}
+\end{landscape}
+} End longtab
+\end{appendix}
+
+%%%% End of aa.dem
